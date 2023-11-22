@@ -12,7 +12,7 @@ public class AcquaQuest extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		img = new Texture("jelly/Idle.png");
 	}
 
 	@Override
