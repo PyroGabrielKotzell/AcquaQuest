@@ -11,13 +11,15 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class AcquaQuest extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	float imgx = 0, imgy = 0, speed = 1.1f, asRatio;
+	float imgx = 0, imgy = 0, speed = 1.1f, asRatio, asRatio2;
 	Camera cam;
 	
 	@Override
 	public void create () {
-		asRatio = Gdx.graphics.getWidth()/Gdx.graphics.getHeight();
-		cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / asRatio);
+		asRatio = Gdx.graphics.getWidth()/(float)Gdx.graphics.getHeight();
+		asRatio2 = Gdx.graphics.getHeight()/(float)Gdx.graphics.getWidth();
+		cam = new OrthographicCamera(4, 4 * asRatio2);
+		cam.position.set(2f, 4f * asRatio2 * 0.5f, 0f);
 		batch = new SpriteBatch();
 		img = new Texture("jelly/Idle.png");
 	}
@@ -30,12 +32,15 @@ public class AcquaQuest extends ApplicationAdapter {
 		cam.update();
 		batch.setProjectionMatrix(cam.projection);
 		batch.begin();
-		batch.draw(img, imgx, imgy, img.getWidth()*asRatio, img.getHeight()*asRatio);
+		batch.draw(img, imgx, imgy, 2, 1);
 		batch.end();
-		imgx += speed;
+		/*imgx += speed;
 		speed += Math.log(speed);
-		if (speed > 900) speed = 1.1f;
-		if (imgx > 600) imgx = -img.getWidth();
+		if (speed > 100) speed = 99f;
+		if (imgx > 600){
+			imgx = -img.getWidth();
+			speed = 1f;
+		}*/
 	}
 	
 	@Override
