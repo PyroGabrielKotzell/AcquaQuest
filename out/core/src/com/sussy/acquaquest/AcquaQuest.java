@@ -11,12 +11,13 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class AcquaQuest extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	float imgx = 1, imgy = 0, speed = 1.1f;
+	float imgx = 0, imgy = 0, speed = 1.1f, asRatio;
 	Camera cam;
 	
 	@Override
 	public void create () {
-		cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		asRatio = Gdx.graphics.getWidth()/Gdx.graphics.getHeight();
+		cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight() / asRatio);
 		batch = new SpriteBatch();
 		img = new Texture("jelly/Idle.png");
 	}
@@ -29,7 +30,7 @@ public class AcquaQuest extends ApplicationAdapter {
 		cam.update();
 		batch.setProjectionMatrix(cam.projection);
 		batch.begin();
-		batch.draw(img, imgx, imgy);
+		batch.draw(img, imgx, imgy, img.getWidth()*asRatio, img.getHeight()*asRatio);
 		batch.end();
 		imgx += speed;
 		speed += Math.log(speed);

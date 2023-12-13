@@ -16,9 +16,17 @@ public class Renderer {
         sprites.add(new Sprite(t, x, y));
     }
 
+    public void add(String path, float x, float y){
+        sprites.add(new Sprite(new Texture(path), x, y));
+    }
+
     public void render(SpriteBatch batch){
         for (Sprite s : sprites) {
-            batch.draw(s.getImage(), s.getX(), x.getY(), s.getWidth(), s.getHeight());
+            batch.draw(s.getTexture(), s.getX(), s.getY(), s.getWidth()*s.getAsRatio(), s.getHeight()*s.getAsRatio());
         }
+    }
+
+    public Sprite getSprite(int i) {
+        return sprites.get(i);
     }
 }
