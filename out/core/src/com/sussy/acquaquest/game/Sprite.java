@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Sprite {
     private Texture texture;
-    private float x, y, width, height, asRatio;
+    private float x, y, width, height;
 
     public Sprite(Texture texture, float x, float y, float width, float height) {
         this.texture = texture;

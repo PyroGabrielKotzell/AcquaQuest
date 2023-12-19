@@ -23,14 +23,14 @@ public class AcquaQuest extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		img = new Texture("jelly/Idle.png");
 	}
-
+	
 	// https://forums.getpaint.net/topic/17516-sprite-animation-helper-v-1013-updated-april-30-2022/
-
+	
 	@Override
 	public void render () {
 		ScreenUtils.clear(0.3f, 0.55f, 1f, 1);
 		cam.update();
-		batch.setProjectionMatrix(cam.projection);
+		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
 		batch.draw(img, imgx, imgy, 2, 1);
 		batch.end();
