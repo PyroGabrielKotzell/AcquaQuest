@@ -32,7 +32,7 @@ public class AcquaQuest extends ApplicationAdapter {
 		cam.update();
 		batch.setProjectionMatrix(cam.combined);
 		batch.begin();
-		batch.draw(img, imgx, imgy, 1.5f, 0.5f);
+		batch.draw(img, imgx, imgy, 1, img.getHeight()/(float)img.getWidth());
 		batch.end();
 		imgx += speed;
 		speed += 0.01f;
