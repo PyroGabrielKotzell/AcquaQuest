@@ -1,23 +1,19 @@
-package com.sussy.acquaquest.game;
+package com.sussy.acquaquest.render;
 
 import com.badlogic.gdx.graphics.Texture;
 
 public class Sprite {
     private Texture texture;
-    private float x, y, width, height;
+    private float width, height;
 
-    public Sprite(Texture texture, float x, float y, float width, float height) {
+    public Sprite(Texture texture, float width, float height) {
         this.texture = texture;
-        this.x = x;
-        this.y = y;
         this.width = width;
         this.height = height;
     }
 
-    public Sprite(Texture texture, float x, float y) {
+    public Sprite(Texture texture) {
         this.texture = texture;
-        this.x = x;
-        this.y = y;
         this.width = texture.getWidth();
         this.height = texture.getHeight();
     }
@@ -28,22 +24,6 @@ public class Sprite {
 
     public void setTexture(Texture texture) {
         this.texture = texture;
-    }
-
-    public float getX() {
-        return x;
-    }
-
-    public void setX(float x) {
-        this.x = x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
-    public void setY(float y) {
-        this.y = y;
     }
 
     public float getWidth() {
@@ -60,9 +40,5 @@ public class Sprite {
 
     public void setHeight(float height) {
         this.height = height;
-    }
-
-    public float getAsRatio(){
-        return width/height;
     }
 }
