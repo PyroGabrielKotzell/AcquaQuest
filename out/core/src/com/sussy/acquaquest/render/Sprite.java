@@ -41,5 +41,6 @@ public class Sprite {
 
     public void setHeight(float height) {
         this.height = height;
+        width = height * texture.getWidth()/(float)texture.getHeight();
     }
 }

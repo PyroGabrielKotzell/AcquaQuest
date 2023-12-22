@@ -1,15 +1,15 @@
 package com.sussy.acquaquest.render;
 
+import java.util.Collection;
 import java.util.HashMap;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Renderer {
     private HashMap<String, GameObject> actors = new HashMap<>();
 
-    public void add(String name, Texture texture, float x, float y, float width, float height){
-        actors.put(name, new GameObject(texture, x, y, width, height));
+    public void add(String name, GameObject obj){
+        actors.put(name, obj);
     }
 
     public void render(SpriteBatch batch){
@@ -18,7 +18,11 @@ public class Renderer {
         }
     }
 
-    public GameObject getSprite(String name) {
+    public Collection<GameObject> getGameObj(){
+        return actors.values();
+    }
+
+    public GameObject getActor(String name) {
         return actors.get(name);
     }
 }

@@ -2,7 +2,7 @@ package com.sussy.acquaquest.render;
 
 import com.badlogic.gdx.graphics.Texture;
 
-public class GameObject{
+public abstract class GameObject{
     private float x, y;
     private Sprite s;
 
@@ -58,5 +58,8 @@ public class GameObject{
 
     public void setHeight(float height){
         s.setHeight(height);
+    }
+
+    public void update(){
     }
 }
