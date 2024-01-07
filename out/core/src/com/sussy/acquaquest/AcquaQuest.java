@@ -1,49 +1,34 @@
 package com.sussy.acquaquest;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.sussy.acquaquest.render.*;
+import com.sussy.acquaquest.render.actors.Player;
 
 public class AcquaQuest extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	float imgx = 0, imgy = 0, speed = 0.01f, asRatio, asRatio2;
-	Camera cam;
-	
+	Renderer r = new Renderer();
+	float w = 1;
+	boolean reverse = false;
+
 	@Override
 	public void create () {
-		asRatio = Gdx.graphics.getWidth()/(float)Gdx.graphics.getHeight();
-		asRatio2 = Gdx.graphics.getHeight()/(float)Gdx.graphics.getWidth();
-		cam = new OrthographicCamera(4, 4 * asRatio2);
-		cam.position.set(2f, 4f * asRatio2 * 0.5f, 0f);
-		batch = new SpriteBatch();
-		img = new Texture("jelly/Idle.png");
+		r.init();
+		r.add("Jelly", new Player(new Texture("jelly/Idle.png"), 0, 0, 1, 1));
+		r.getActor("Jelly").setWidth(1);
 	}
 	
 	@Override
 	public void render () {
 		ScreenUtils.clear(0.3f, 0.55f, 1f, 1);
-		cam.update();
-		batch.setProjectionMatrix(cam.combined);
-		batch.begin();
-		batch.draw(img, imgx, imgy, 1, img.getHeight()/(float)img.getWidth());
-		batch.end();
-		imgx += speed;
-		speed += 0.01f;
-		if (speed > 0.25f) speed = 0.25f;
-		if (imgx > 4) {
-			imgx = -1.5f;
-			speed = 0.01f;
-		}
+		r.render();
+		r.getActor("Jelly").setWidth(w);
+		w += !reverse ? 0.01 : -0.01;
+		if (w < 1 || w > 2) reverse = !reverse;
 	}
 	
 	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
+		r.dispose();
 	}
 }

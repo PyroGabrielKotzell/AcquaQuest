@@ -9,7 +9,7 @@ public class Sprite {
     public Sprite(Texture texture, float width, float height) {
         this.texture = texture;
         this.width = width;
-        this.height = texture.getHeight()/(float)texture.getWidth();
+        this.height = height;
     }
 
     public Sprite(Texture texture) {
@@ -42,5 +42,9 @@ public class Sprite {
     public void setHeight(float height) {
         this.height = height;
         width = height * texture.getWidth()/(float)texture.getHeight();
+    }
+
+    public void dispose() {
+        texture.dispose();
     }
 }

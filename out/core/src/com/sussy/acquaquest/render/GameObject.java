@@ -59,7 +59,11 @@ public abstract class GameObject{
     public void setHeight(float height){
         s.setHeight(height);
     }
+    
+    public void dispose(){
+    }
 
     public void update(){
+        s.dispose();
     }
 }
