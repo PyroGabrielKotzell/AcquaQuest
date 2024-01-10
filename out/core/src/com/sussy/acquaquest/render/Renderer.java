@@ -1,16 +1,20 @@
 package com.sussy.acquaquest.render;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Renderer {
     private HashMap<String, GameObject> actors;
     private SpriteBatch batch;
+    private Texture[] background;
+    private int backOffset = 0;
     public Camera cam;
 
     public void init(){
@@ -29,10 +33,15 @@ public class Renderer {
         cam.update();
 		batch.setProjectionMatrix(cam.combined);
         batch.begin();
-        for (GameObject gameObj : actors.values()) {
-            batch.draw(gameObj.getT(), gameObj.getX(), gameObj.getY(), gameObj.getWidth(), gameObj.getHeight());
+        batch.draw(background[backOffset], 0, cam.viewportHeight/2, cam.viewportWidth, cam.viewportHeight/2);
+        for (GameObject g : actors.values()) {
+            batch.draw(g.getT()[g.getS().offset], g.getX(), g.getY(), g.getWidth(), g.getHeight());
+            g.getS().offset++;
+            if(g.getS().offset>g.getS().getTexture().length-1) g.getS().offset = 0;
         }
         batch.end();
+        backOffset++;
+        if (backOffset > background.length-1) backOffset = 0; 
     }
 
     public void dispose(){
@@ -56,5 +65,16 @@ public class Renderer {
 
     public void setBatch(SpriteBatch batch) {
         this.batch = batch;
+    }
+
+    public Texture[] animator(String s){
+        File[] fs = new File(s).listFiles();
+        Texture[] t = new Texture[fs.length];
+        for(int i = 0; i < fs.length; i++) t[i] = new Texture(fs[i].getName());
+        return t;
+    }
+
+    public void background(Texture[] t){
+        background = t;
     }
 }

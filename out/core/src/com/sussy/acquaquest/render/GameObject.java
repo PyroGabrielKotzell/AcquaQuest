@@ -36,11 +36,15 @@ public abstract class GameObject{
         this.s = s;
     }
 
-    public Texture getT(){
+    public Texture[] getT(){
         return s.getTexture();
     }
 
     public void setT(Texture t){
+        s.setTexture(t);
+    }
+
+    public void setT(Texture[] t){
         s.setTexture(t);
     }
 
@@ -61,9 +65,9 @@ public abstract class GameObject{
     }
     
     public void dispose(){
+        s.dispose();
     }
 
     public void update(){
-        s.dispose();
     }
 }

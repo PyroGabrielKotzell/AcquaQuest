@@ -3,26 +3,32 @@ package com.sussy.acquaquest.render;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Sprite {
-    private Texture texture;
+    private Texture[] texture;
+    public int offset = 0;
     private float width, height;
 
     public Sprite(Texture texture, float width, float height) {
+        this.texture = new Texture[1];
+        this.texture[0] = texture;
+        this.width = width;
+        this.height = height;
+    }
+
+    public Sprite(Texture[] texture, float width, float height) {
         this.texture = texture;
         this.width = width;
         this.height = height;
     }
 
-    public Sprite(Texture texture) {
-        this.texture = texture;
-        this.width = texture.getWidth();
-        this.height = texture.getHeight();
-    }
-
-    public Texture getTexture() {
+    public Texture[] getTexture() {
         return texture;
     }
 
     public void setTexture(Texture texture) {
+        this.texture[0] = texture;
+    }
+
+    public void setTexture(Texture[] texture) {
         this.texture = texture;
     }
 
@@ -32,7 +38,7 @@ public class Sprite {
 
     public void setWidth(float width) {
         this.width = width;
-        height = width * texture.getHeight()/(float)texture.getWidth();
+        height = width * texture[0].getHeight()/(float)texture[0].getWidth();
     }
 
     public float getHeight() {
@@ -41,10 +47,10 @@ public class Sprite {
 
     public void setHeight(float height) {
         this.height = height;
-        width = height * texture.getWidth()/(float)texture.getHeight();
+        width = height * texture[0].getWidth()/(float)texture[0].getHeight();
     }
 
     public void dispose() {
-        texture.dispose();
+        for(Texture t : texture) t.dispose();
     }
 }

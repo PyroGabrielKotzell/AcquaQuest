@@ -1,0 +1,61 @@
+WindowManager
+-game: Game
+-menu: Menu
+--
++loadGame(): void
++loadMenu(): void
++update(): void
++getGame(): Game 
+
+Game
+-isLoaded: bool
+-renderer: Renderer
+--
++load(): void
++update(): void
+
+Menu
+-isLoaded: bool
+-renderer: Renderer
+--
++load(): void
++update(): void
+
+Renderer
+-actors: HashMap<String, GameObject>
+-batch: SpriteBatch
++cam: Camera
+--
++init(): void
++add(String, GameObject): void
++render(): void
++dispose(): void
++getActors(): Collection<GameObject>
++getActor(String): GameObject
++removeActor(String): void
++setBatch(SpriteBatch): void
+
+GameObject
+-s: Sprite
+-x: float
+-y: float
+--
++getX(): float
++setX(float): void
++getY(): float
++setY(float): void
++getS(): Sprite
++update(): void
+
+Sprite
+-t: Texture
+-width: float
+-height: float
+--
++getW(): float
++setW(float): void
++getH(): float
++setH(float): void
+
+ActorFactory
++createAgent(): void
