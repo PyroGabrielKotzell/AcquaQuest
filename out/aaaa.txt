@@ -58,4 +58,31 @@ Sprite
 +setH(float): void
 
 ActorFactory
-+createAgent(): void
++createAgent(String): void
+
+Player
+-hp: int
+-invincible: bool
+-fishing: bool
+-dead: bool
+--
++startFishing(): void
++update(): void
+-getDmg(): void
+
+Fish
+-dead: bool
+--
+-startSpinning(): void
++update(): void
+
+Guardian
+-hp: int
+-invincible: bool
+-dead: bool
+-attacking: bool
+--
++attack(): void
++update(): void
+-getDmg(): void
+-generatePath(): void
