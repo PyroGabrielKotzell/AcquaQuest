@@ -14,7 +14,7 @@ public class Renderer {
     private HashMap<String, GameObject> actors;
     private SpriteBatch batch;
     private Texture[] background;
-    private int backOffset = 0;
+    private int backOffset = 0, cycle = 0;
     public Camera cam;
 
     public void init(){
@@ -33,14 +33,18 @@ public class Renderer {
         cam.update();
 		batch.setProjectionMatrix(cam.combined);
         batch.begin();
-        batch.draw(background[backOffset], 0, cam.viewportHeight/2, cam.viewportWidth, cam.viewportHeight/2);
+        batch.draw(background[backOffset], 0, 0, cam.viewportWidth, cam.viewportHeight);
         for (GameObject g : actors.values()) {
             batch.draw(g.getT()[g.getS().offset], g.getX(), g.getY(), g.getWidth(), g.getHeight());
-            g.getS().offset++;
+            if (g.getS().getTexture().length != 1) g.getS().offset++;
             if(g.getS().offset>g.getS().getTexture().length-1) g.getS().offset = 0;
         }
         batch.end();
-        backOffset++;
+        cycle++;
+        if (cycle > 7) {
+            cycle = 0;
+            backOffset++;
+        }
         if (backOffset > background.length-1) backOffset = 0; 
     }
 
@@ -70,7 +74,7 @@ public class Renderer {
     public Texture[] animator(String s){
         File[] fs = new File(s).listFiles();
         Texture[] t = new Texture[fs.length];
-        for(int i = 0; i < fs.length; i++) t[i] = new Texture(fs[i].getName());
+        for(int i = 0; i < fs.length; i++) t[i] = new Texture(s + "/" + fs[i].getName());
         return t;
     }
 

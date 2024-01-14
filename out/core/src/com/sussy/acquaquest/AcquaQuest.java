@@ -17,9 +17,7 @@ public class AcquaQuest extends ApplicationAdapter {
 		r.init();
 		r.add("Jelly", new Player(new Texture("jelly/Idle.png"), 0, 0, 1, 1));
 		r.getActor("Jelly").setWidth(1);
-		Texture[] t = new Texture[1];
-		t[0] = new Texture("backgrounds/Ocean_1/1.png");
-		r.background(t);
+		r.background(r.animator("assets/backgrounds/"));
 	}
 	
 	@Override
