@@ -1,6 +1,7 @@
 package com.sussy.acquaquest.render;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -16,7 +17,7 @@ public class Renderer {
     private Texture[] background;
     private int backOffset = 0, cycle = 0;
     public Camera cam;
-
+    
     public void init(){
         batch = new SpriteBatch();
         float asRatio2 = Gdx.graphics.getHeight()/(float)Gdx.graphics.getWidth();
@@ -24,14 +25,19 @@ public class Renderer {
         cam.position.set(2f, 4f * asRatio2 * 0.5f, 0f);
         actors = new HashMap<>();
     }
-
+    
     public void add(String name, GameObject obj){
-        actors.put(name, obj);
+        if (!actors.containsKey(name)) actors.put(name, obj);
+        else {
+            String[] s = (String[]) actors.keySet().toArray();
+            Arrays.sort(s);
+            actors.put(name + Arrays.binarySearch(s, name), obj);
+        }
     }
-
+    
     public void render(){
         cam.update();
-		batch.setProjectionMatrix(cam.combined);
+        batch.setProjectionMatrix(cam.combined);
         batch.begin();
         batch.draw(background[backOffset], 0, 0, cam.viewportWidth, cam.viewportHeight);
         for (GameObject g : actors.values()) {
@@ -47,26 +53,26 @@ public class Renderer {
         }
         if (backOffset > background.length-1) backOffset = 0; 
     }
-
+    
     public void dispose(){
         batch.dispose();
         for (GameObject gameObj : actors.values()) {
             gameObj.dispose();
         }
     }
-
+    
     public Collection<GameObject> getGameObj(){
         return actors.values();
     }
-
+    
     public GameObject getActor(String name) {
         return actors.get(name);
     }
-
+    
     public GameObject removeActor(String name) {
         return actors.remove(name);
     }
-
+    
     public void setBatch(SpriteBatch batch) {
         this.batch = batch;
     }
@@ -77,7 +83,7 @@ public class Renderer {
         for(int i = 0; i < fs.length; i++) t[i] = new Texture(s + "/" + fs[i].getName());
         return t;
     }
-
+    
     public void background(Texture[] t){
         background = t;
     }
