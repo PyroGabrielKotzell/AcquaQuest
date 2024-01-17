@@ -7,6 +7,7 @@ public enum ResourceEnum {
     SharkAttack,
     PlayerIdle,
     PlayerBait,
+    PlayerFishing,
     Bait,
     String,
     Background,

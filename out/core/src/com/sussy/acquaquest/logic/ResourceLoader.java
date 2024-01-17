@@ -19,7 +19,10 @@ public class ResourceLoader {
                     mapTexture.put(index, new Texture("esca/filo.png"));
                     break;
                 case Fish:
-                    mapTexture.put(index, new Texture("fish/Tropical_fish.png"));
+                    mapTexture.put(index, new Texture("fish/fish/fish0.png"));
+                    break;
+                case PlayerFishing:
+                    mapTexture.put(index, new Texture("player/fishing/frame3.png"));
                     break;
                 default: return null;
             }

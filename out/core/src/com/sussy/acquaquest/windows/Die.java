@@ -1,33 +1,31 @@
 package com.sussy.acquaquest.windows;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.sussy.acquaquest.logic.ResourceEnum;
 import com.sussy.acquaquest.logic.ResourceLoader;
 import com.sussy.acquaquest.render.Renderer;
-import com.sussy.acquaquest.render.actors.Player;
+import com.sussy.acquaquest.render.actors.Text;
 
-public class Game {
+public class Die {
+    private Renderer renderer = new Renderer();
     boolean isLoaded = false;
-    private Renderer renderer;
-    private Level l;
-    public int score = 0;
 
     public void load(){
         isLoaded = true;
-        l = new Level();
         renderer = new Renderer();
         renderer.init();
+        ScreenUtils.clear(new Color(0, 0, 0, 1));
         renderer.setBackground(ResourceLoader.getAnimation(ResourceEnum.Background));
-        renderer.add("player", new Player(0.5f, 0.7f, 0.7f));
+        renderer.add("text", new Text(ResourceLoader.getAnimation(ResourceEnum.Menutxt), 0, 0, renderer.getWidth()));
+        renderer.render();
     }
 
     public void unload(){
-        score = 0;
         isLoaded = false;
         renderer.dispose();
-    }
-
-    public void addScore() {
-        score++;
     }
 
     public Renderer getRenderer() {
@@ -35,8 +33,6 @@ public class Game {
     }
 
     public void update(){
-        renderer.render();
-        l.setMultiplier(score > 3 ? (score > 10 ? (score > 15 ? 3 : 2) : 1) : 0);
-        l.update();
+        if(Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) WindowManager.changeWindow();
     }
 }

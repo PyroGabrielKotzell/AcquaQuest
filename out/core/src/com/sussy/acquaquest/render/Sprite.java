@@ -43,6 +43,10 @@ public class Sprite {
         height = width * texture[0].getHeight()/(float)texture[0].getWidth();
     }
 
+    public void setUnchangingWidth(float width) {
+        this.width = width;
+    }
+
     public float getHeight() {
         return height;
     }
@@ -50,6 +54,10 @@ public class Sprite {
     public void setHeight(float height) {
         this.height = height;
         width = height * texture[0].getWidth()/(float)texture[0].getHeight();
+    }
+
+    public void setUnchangingHeight(float height) {
+        this.height = height;
     }
 
     public void draw(SpriteBatch sb, float x, float y){
@@ -66,6 +74,22 @@ public class Sprite {
 
     public int getOffset() {
         return offset;
+    }
+
+    public int getCycle() {
+        return cycle;
+    }
+    
+    public void setOffset(int n){
+        offset = n;
+    }
+
+    public void advanceCycle(){
+        cycle++;
+    }
+
+    public int getMaxCycle(){
+        return maxCycle;
     }
     
     public void dispose() {

@@ -1,14 +1,14 @@
 package com.sussy.acquaquest.render;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Set;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.sussy.acquaquest.render.actors.Player;
 
 public class Renderer {
     private HashMap<String, GameObject> actors;
@@ -16,22 +16,19 @@ public class Renderer {
     private Texture[] background;
     private int backOffset = 0, cycle = 0;
     public Camera cam;
-    
+    public Player player;
+
     public void init(){
         batch = new SpriteBatch();
-        float asRatio2 = Gdx.graphics.getHeight()/(float)Gdx.graphics.getWidth();
-        cam = new OrthographicCamera(4, 4 * asRatio2);
-        cam.position.set(2f, 4f * asRatio2 * 0.5f, 0f);
+        cam = new OrthographicCamera(4, 4);
+        cam.position.set(2f, 2f, 0f);
         actors = new HashMap<>();
     }
     
     public void add(String name, GameObject obj){
+        if (name.equals(player)) player = (Player) obj;
         if (!actors.containsKey(name)) actors.put(name, obj);
-        else {
-            String[] s = (String[]) actors.keySet().toArray();
-            Arrays.sort(s);
-            actors.put(name + Arrays.binarySearch(s, name), obj);
-        }
+        else actors.put(name + obj.toString(), obj);
     }
     
     public void render(){
@@ -67,8 +64,9 @@ public class Renderer {
         return actors.get(name);
     }
     
-    public GameObject removeActor(String name) {
-        return actors.remove(name);
+    public void removeActor(String name) {
+        actors.get(name).dispose();
+        actors.remove(name);
     }
     
     public void setBatch(SpriteBatch batch) {
@@ -85,5 +83,9 @@ public class Renderer {
     
     public void setBackground(Texture[] t){
         background = t;
+    }
+
+    public Set<String> getKeyset() {
+        return actors.keySet();
     }
 }
