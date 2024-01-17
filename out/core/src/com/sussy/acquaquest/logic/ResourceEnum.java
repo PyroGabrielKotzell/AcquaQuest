@@ -9,5 +9,6 @@ public enum ResourceEnum {
     PlayerBait,
     Bait,
     String,
-    Background
+    Background,
+    Menutxt
 }

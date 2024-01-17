@@ -27,4 +27,20 @@ public abstract class WindowManager{
         if (m.isLoaded) m.unload();
         else g.unload();
     }
+    
+    public static Game getG() {
+        return g;
+    }
+
+    public static void setG(Game g) {
+        WindowManager.g = g;
+    }
+
+    public static Menu getM() {
+        return m;
+    }
+
+    public static void setM(Menu m) {
+        WindowManager.m = m;
+    }
 }

@@ -74,8 +74,16 @@ public class Renderer {
     public void setBatch(SpriteBatch batch) {
         this.batch = batch;
     }
+
+    public float getWidth(){
+        return cam.viewportWidth;
+    }
+
+    public float getHeight(){
+        return cam.viewportHeight;
+    }
     
-    public void background(Texture[] t){
+    public void setBackground(Texture[] t){
         background = t;
     }
 }

@@ -4,19 +4,19 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public abstract class GameObject{
-    private float x, y;
-    private Sprite s;
+    protected float x, y;
+    protected Sprite base;
 
-    public GameObject(Texture t, float x, float y, float width, float height) {
+    public GameObject(Texture t, float x, float y, float width) {
         this.x = x;
         this.y = y;
-        s = new Sprite(t, width, height);
+        base = new Sprite(t, width);
     }
 
-    public GameObject(Texture[] t, float x, float y, float width, float height, int cycle) {
+    public GameObject(Texture[] t, float x, float y, float width, int cycle) {
         this.x = x;
         this.y = y;
-        s = new Sprite(t, width, height, cycle);
+        base = new Sprite(t, width, cycle);
     }
 
     public float getX() {
@@ -35,50 +35,50 @@ public abstract class GameObject{
         this.y = y;
     }
 
-    public Sprite getS() {
-        return s;
+    public Sprite getBase() {
+        return base;
     }
 
-    public void setS(Sprite s) {
-        this.s = s;
+    public void setBase(Sprite s) {
+        this.base = s;
     }
 
     public Texture[] getT(){
-        return s.getTexture();
+        return base.getTexture();
     }
 
     public void setT(Texture t){
-        s.setTexture(t);
+        base.setTexture(t);
     }
 
     public void setT(Texture[] t){
-        s.setTexture(t);
+        base.setTexture(t);
     }
 
     public float getWidth(){
-        return s.getWidth();
+        return base.getWidth();
     }
 
     public void setWidth(float width){
-        s.setWidth(width);
+        base.setWidth(width);
     }
 
     public float getHeight(){
-        return s.getHeight();
+        return base.getHeight();
     }
 
     public void setHeight(float height){
-        s.setHeight(height);
+        base.setHeight(height);
     }
     
     public void dispose(){
-        s.dispose();
+        base.dispose();
     }
 
     public void update(){
     }
 
     public void draw(SpriteBatch sb){
-        s.draw(sb, x, y);
+        base.draw(sb, x, y);
     }
 }

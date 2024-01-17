@@ -8,17 +8,15 @@ public class Sprite {
     private int offset, cycle, maxCycle = 0;
     private float width, height;
 
-    public Sprite(Texture texture, float width, float height) {
+    public Sprite(Texture texture, float width) {
         this.texture = new Texture[1];
         this.texture[0] = texture;
-        this.width = width;
-        this.height = height;
+        setWidth(width);
     }
 
-    public Sprite(Texture[] texture, float width, float height, int cycle) {
+    public Sprite(Texture[] texture, float width, int cycle) {
         this.texture = texture;
-        this.width = width;
-        this.height = height;
+        setWidth(width);
         offset = 0;
         this.cycle = 0;
         maxCycle = cycle;
@@ -66,6 +64,10 @@ public class Sprite {
         }
     }
 
+    public int getOffset() {
+        return offset;
+    }
+    
     public void dispose() {
         for(Texture t : texture) t.dispose();
     }

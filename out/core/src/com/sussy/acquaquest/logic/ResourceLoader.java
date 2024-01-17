@@ -48,6 +48,9 @@ public class ResourceLoader {
                 case Background:
                     mapAnimation.put(index, animator("assets/backgrounds/"));
                     break;
+                case Menutxt:
+                    mapAnimation.put(index, animator("assets/menuText/"));
+                    break;
                 default: return null;
             }
         }  

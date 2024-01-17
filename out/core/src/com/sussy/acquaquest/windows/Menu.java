@@ -1,8 +1,11 @@
 package com.sussy.acquaquest.windows;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.sussy.acquaquest.logic.ResourceEnum;
 import com.sussy.acquaquest.logic.ResourceLoader;
 import com.sussy.acquaquest.render.Renderer;
+import com.sussy.acquaquest.render.actors.Text;
 
 public class Menu {
     boolean isLoaded = false;
@@ -12,7 +15,8 @@ public class Menu {
         isLoaded = true;
         renderer = new Renderer();
         renderer.init();
-        renderer.background(ResourceLoader.getAnimation(ResourceEnum.Background));
+        renderer.setBackground(ResourceLoader.getAnimation(ResourceEnum.Background));
+        renderer.add("text", new Text(0, 0, renderer.getWidth()));
     }
 
     public void unload(){
@@ -22,5 +26,6 @@ public class Menu {
 
     public void update(){
         renderer.render();
+        if (Gdx.input.isKeyPressed(Input.Keys.ANY_KEY)) WindowManager.changeWindow();
     }
 }
