@@ -21,7 +21,6 @@ public class ResourceLoader {
                 case Fish:
                     mapTexture.put(index, new Texture("fish/Tropical_fish.png"));
                     break;
-                
                 default: return null;
             }
         }  
@@ -43,7 +42,9 @@ public class ResourceLoader {
                 case Player:
                     mapAnimation.put(index, animator("assets/player/"));
                     break;
-                
+                case Background:
+                    mapAnimation.put(index, animator("assets/backgrounds/"));
+                    break;
                 default: return null;
             }
         }  

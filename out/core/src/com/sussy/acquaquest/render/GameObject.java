@@ -1,6 +1,7 @@
 package com.sussy.acquaquest.render;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public abstract class GameObject{
     private float x, y;
@@ -10,6 +11,12 @@ public abstract class GameObject{
         this.x = x;
         this.y = y;
         s = new Sprite(t, width, height);
+    }
+
+    public GameObject(Texture[] t, float x, float y, float width, float height, int cycle) {
+        this.x = x;
+        this.y = y;
+        s = new Sprite(t, width, height, cycle);
     }
 
     public float getX() {
@@ -69,5 +76,9 @@ public abstract class GameObject{
     }
 
     public void update(){
+    }
+
+    public void draw(SpriteBatch sb){
+        s.draw(sb, x, y);
     }
 }

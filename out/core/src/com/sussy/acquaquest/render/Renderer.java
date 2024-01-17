@@ -1,6 +1,5 @@
 package com.sussy.acquaquest.render;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -41,17 +40,16 @@ public class Renderer {
         batch.begin();
         batch.draw(background[backOffset], 0, 0, cam.viewportWidth, cam.viewportHeight);
         for (GameObject g : actors.values()) {
-            batch.draw(g.getT()[g.getS().offset], g.getX(), g.getY(), g.getWidth(), g.getHeight());
-            if (g.getS().getTexture().length != 1) g.getS().offset++;
-            if(g.getS().offset>g.getS().getTexture().length-1) g.getS().offset = 0;
+            g.draw(batch);
+            g.update();
         }
         batch.end();
         cycle++;
         if (cycle > 7) {
             cycle = 0;
             backOffset++;
+            if (backOffset > background.length-1) backOffset = 0;
         }
-        if (backOffset > background.length-1) backOffset = 0; 
     }
     
     public void dispose(){
@@ -75,13 +73,6 @@ public class Renderer {
     
     public void setBatch(SpriteBatch batch) {
         this.batch = batch;
-    }
-
-    public Texture[] animator(String s){
-        File[] fs = new File(s).listFiles();
-        Texture[] t = new Texture[fs.length];
-        for(int i = 0; i < fs.length; i++) t[i] = new Texture(s + "/" + fs[i].getName());
-        return t;
     }
     
     public void background(Texture[] t){

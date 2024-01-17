@@ -1,6 +1,7 @@
 package com.sussy.acquaquest.windows;
 
-import com.sussy.acquaquest.render.GameObject;
+import com.sussy.acquaquest.logic.ResourceEnum;
+import com.sussy.acquaquest.logic.ResourceLoader;
 import com.sussy.acquaquest.render.Renderer;
 
 public class Game {
@@ -11,7 +12,7 @@ public class Game {
         isLoaded = true;
         renderer = new Renderer();
         renderer.init();
-        renderer.background(renderer.animator("gameBackground/"));
+        renderer.background(ResourceLoader.getAnimation(ResourceEnum.Background));
     }
 
     public void unload(){
@@ -21,6 +22,5 @@ public class Game {
 
     public void update(){
         renderer.render();
-        for(GameObject g : renderer.getGameObj()) g.update();
     }
 }

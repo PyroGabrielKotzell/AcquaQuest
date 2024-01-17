@@ -5,7 +5,7 @@ import com.sussy.acquaquest.render.GameObject;
 
 public class Player extends GameObject{
 
-    public Player(Texture t, float x, float y, float width, float height) {
-        super(t, x, y, width, height);
+    public Player(Texture[] t, float x, float y, float width, float height, int cycle) {
+        super(t, x, y, width, height, cycle);
     }
 }
