@@ -5,7 +5,8 @@ public enum ResourceEnum {
     Jelly,
     Shark,
     SharkAttack,
-    Player,
+    PlayerIdle,
+    PlayerBait,
     Bait,
     String,
     Background

@@ -39,8 +39,11 @@ public class ResourceLoader {
                 case SharkAttack:
                     mapAnimation.put(index, animator("assets/shark/attack/"));
                     break;
-                case Player:
-                    mapAnimation.put(index, animator("assets/player/"));
+                case PlayerIdle:
+                    mapAnimation.put(index, animator("assets/player/idle"));
+                    break;
+                case PlayerBait:
+                    mapAnimation.put(index, animator("assets/player/bait"));
                     break;
                 case Background:
                     mapAnimation.put(index, animator("assets/backgrounds/"));
