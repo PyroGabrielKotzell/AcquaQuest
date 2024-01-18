@@ -11,7 +11,7 @@ import com.sussy.acquaquest.windows.WindowManager;
 
 public class Player extends GameObject{
     private Sprite bait, idle, fish;
-    private int hp = 3, row, cycle = 10, maxCycle = 20, maxupndown = 30, upndown = 0;
+    private int hp = 3, row, cycle = 10, maxCycle = 30, maxupndown = 30, upndown = 0;
     private float charge = 0;
     private boolean movingUp = false, movingDown = false, launching = false, fishing = false, reverse;
     
@@ -46,12 +46,12 @@ public class Player extends GameObject{
                     launching = true;
                     charge += 0.01;
                     if (charge > 0.4){
-                        charge = 0;
+                        charge = 0.4f;
                         generateBait();
                     }
                 }
-            else cycle++;
         }
+        cycle++;
         if (!Gdx.input.isKeyPressed(Input.Keys.K) && launching) generateBait();
         if (fishing) {
             if (idle.getOffset() > 9) {
@@ -120,13 +120,15 @@ public class Player extends GameObject{
     }
     
     private void removeBait() {
-        WindowManager.getG().getRenderer().removeActor("bait");
+        cycle = 0;
+        WindowManager.getRenderer().removeActors("bait");
     }
 
     private void generateBait(){
+        cycle = 0;
         launching = false;
         fishing = true;
-        WindowManager.getG().getRenderer().add("bait", new Bait(x+getWidth(), y+getHeight()/2, getWidth()/7, charge));
+        WindowManager.getRenderer().add("bait", new Bait(x+getWidth(), y+getHeight()/2, getWidth()/7, charge));
     }
 
     public boolean ismoving(){

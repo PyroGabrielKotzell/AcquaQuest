@@ -10,19 +10,24 @@ public class Game {
     private Renderer renderer;
     private Level l;
     public int score = 0;
+    public Player player;
 
     public void load(){
+        score = 0;
         isLoaded = true;
         l = new Level();
         renderer = new Renderer();
         renderer.init();
         renderer.setBackground(ResourceLoader.getAnimation(ResourceEnum.Background));
-        renderer.add("player", new Player(0.5f, 0.7f, 0.7f));
+        player = new Player(0.5f, 0.7f, 0.7f);
+        renderer.add("player", player);
     }
 
     public void unload(){
-        score = 0;
         isLoaded = false;
+    }
+
+    public void dispose(){
         renderer.dispose();
     }
 
@@ -35,8 +40,9 @@ public class Game {
     }
 
     public void update(){
+        addScore();
         renderer.render();
-        l.setMultiplier(score > 3 ? (score > 10 ? (score > 15 ? 3 : 2) : 1) : 0);
+        l.setMultiplier(score > 2 ? (score > 9 ? (score > 14 ? 3 : 2) : 1) : 0);
         l.update();
     }
 }

@@ -16,11 +16,14 @@ public class Menu {
         renderer = new Renderer();
         renderer.init();
         renderer.setBackground(ResourceLoader.getAnimation(ResourceEnum.Background));
-        renderer.add("text", new Text(ResourceLoader.getAnimation(ResourceEnum.Menutxt), 0, 0, renderer.getWidth()));
+        renderer.add("Text", new Text(ResourceLoader.getAnimation(ResourceEnum.Menutxt), 0, 0, renderer.getWidth()));
     }
 
     public void unload(){
         isLoaded = false;
+    }
+
+    public void dispose(){
         renderer.dispose();
     }
 

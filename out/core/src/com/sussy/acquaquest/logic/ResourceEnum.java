@@ -11,5 +11,6 @@ public enum ResourceEnum {
     Bait,
     String,
     Background,
-    Menutxt
+    Menutxt,
+    Numbers
 }

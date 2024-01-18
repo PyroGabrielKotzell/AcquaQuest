@@ -21,18 +21,21 @@ public class Fish extends GameObject{
         cycle++;
         if (cycle >= maxCycle){
             cycle = 0;
-            x-=0.01;
+            x-=0.012;
         }
-        if (x + getWidth() < 0) WindowManager.getRenderer().removeActor("fish" + this.toString());
+        if (x + getWidth() < 0) WindowManager.getRenderer().removeActors("fish" + this.toString());
         checkColl();
     }
     
     private void checkColl() {
-        GameObject bait = WindowManager.getRenderer().getActor("bait");
+        if(row != WindowManager.getG().player.getRow()) return;
+        GameObject bait = WindowManager.getRenderer().getActor("bait", 0);
         if (bait != null){
-            boolean isTouching = (x<=bait.getX()+bait.getWidth()||x+getWidth()>=bait.getX()) && row == WindowManager.getRenderer().player.getRow();
+            float bL = bait.getX()+bait.getWidth();
+            float fL = x+getWidth();
+            boolean isTouching = (fL>=bL&&x<=bL)||(fL<=bL&&fL>=bait.getX());
             if (isTouching) {
-                WindowManager.getRenderer().removeActor("fish" + this.toString());
+                WindowManager.getRenderer().removeActor("fish", this);
                 WindowManager.getG().addScore();
             }
         }

@@ -2,6 +2,7 @@ package com.sussy.acquaquest.render;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Sprite {
     private Texture[] texture;
@@ -62,6 +63,20 @@ public class Sprite {
 
     public void draw(SpriteBatch sb, float x, float y){
         sb.draw(texture[offset], x, y, width, height);
+        if (maxCycle != 0){
+            cycle++;
+            if (cycle > maxCycle) {
+                cycle = 0;
+                offset++;
+                if (offset > texture.length-1) offset = 0;
+            }
+        }
+    }
+
+    public void drawFlipped(SpriteBatch sb, float x, float y, boolean tx, boolean ty){
+        TextureRegion flipped = new TextureRegion(texture[offset]);
+        flipped.flip(tx, ty);
+        sb.draw(flipped, x, y, width, height);
         if (maxCycle != 0){
             cycle++;
             if (cycle > maxCycle) {

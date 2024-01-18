@@ -16,7 +16,7 @@ public class Bait extends GameObject {
     public Bait(float x, float y, float width, float charge) {
         super(ResourceLoader.getTexture(ResourceEnum.Bait), x, y, width);
         this.charge = charge;
-        player = WindowManager.getRenderer().getActor("player");
+        player = WindowManager.getG().player;
         string = new FishinString(ResourceLoader.getTexture(ResourceEnum.String), player.getX()+player.getWidth(), player.getY(), 0);
         string.getBase().setUnchangingHeight(player.getHeight()/1.5f);
         string.getBase().setUnchangingWidth(getX()+getWidth()/2-(player.getX()+player.getWidth()));
