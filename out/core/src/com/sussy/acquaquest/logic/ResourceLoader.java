@@ -13,20 +13,20 @@ public class ResourceLoader {
         if(!mapTexture.containsKey(index)){
             switch (index) {
                 case Bait:
-                    mapTexture.put(index, new Texture("esca/esca.png"));
+                    mapTexture.put(index, new Texture("assets/esca/esca.png"));
                     break;
                 case String:
-                    mapTexture.put(index, new Texture("esca/filo.png"));
+                    mapTexture.put(index, new Texture("assets/esca/filo.png"));
                     break;
                 case Fish:
-                    mapTexture.put(index, new Texture("fish/fish/fish0.png"));
+                    mapTexture.put(index, new Texture("assets/fish/fish/fish0.png"));
                     break;
                 case PlayerFishing:
-                    mapTexture.put(index, new Texture("player/fishing/frame3.png"));
+                    mapTexture.put(index, new Texture("assets/player/fishing/frame3.png"));
                     break;
                 default: return null;
             }
-        }  
+        }
         return mapTexture.get(index);
     }
 

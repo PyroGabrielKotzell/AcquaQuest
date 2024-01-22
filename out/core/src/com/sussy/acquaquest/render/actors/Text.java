@@ -13,7 +13,7 @@ public class Text extends GameObject {
     private Texture[] numbers = ResourceLoader.getAnimation(ResourceEnum.Numbers);
     
     public Text(int score, float x, float y, float width) {
-        super(new Texture("null.png"), x, y, width);
+        super(new Texture("assets/null.png"), x, y, width);
         this.score = score;
         isN = true;
     }

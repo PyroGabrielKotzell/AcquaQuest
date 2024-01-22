@@ -40,7 +40,7 @@ public class Game {
     }
 
     public void update(){
-        //addScore();
+        addScore();
         renderer.render();
         l.setMultiplier(score > 2 ? (score > 9 ? (score > 14 ? 3 : 2) : 1) : 0);
         l.update();

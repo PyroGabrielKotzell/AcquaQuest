@@ -18,7 +18,7 @@ public class Die {
         renderer = new Renderer();
         renderer.init();
         renderer.add("text", new Text(WindowManager.getG().score, 1f, 1.2f, 2));
-        renderer.add("text", new Text(new Texture("deathText/deathText.png"), 0.5f, 2f, 3f));
+        renderer.add("text", new Text(new Texture("assets/deathText/deathText.png"), 0.5f, 2f, 3f));
         renderer.render();
     }
 
